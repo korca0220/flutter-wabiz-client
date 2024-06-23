@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wabiz_client/theme.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,6 +10,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+        theme: wabizDefaultTheme,
+        home: const Scaffold(
+          body: Center(
+            child: Text("Hello, World!"),
+          ),
+        ));
   }
 }
