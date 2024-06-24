@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_wabiz_client/views/home/homepage.dart';
+import 'package:flutter_wabiz_client/views/home/home_page.dart';
 import 'package:flutter_wabiz_client/views/wabiz_app_shell.dart';
 import 'package:go_router/go_router.dart';
 
