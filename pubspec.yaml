@@ -16,6 +16,10 @@ dependencies:
   gap: ^3.0.1
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0
+  dio: ^5.4.3+1
+  retrofit: ^4.1.0
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +29,10 @@ dev_dependencies:
   freezed: ^2.5.2
   build_runner: ^2.4.11
   json_serializable: ^6.8.0
+  retrofit_generator: ^8.1.0
+  riverpod_generator: ^2.4.0
+  riverpod_lint: ^2.3.10
+  custom_lint: ^0.6.4
 
 flutter:
   uses-material-design: true
