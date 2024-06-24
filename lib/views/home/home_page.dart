@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
+            Container( 
               color: Colors.white,
               height: 324,
               child: Column(
