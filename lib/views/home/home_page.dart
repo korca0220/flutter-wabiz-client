@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_wabiz_client/theme.dart';
 import 'package:flutter_wabiz_client/view_model/home/home_view_model.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
@@ -95,6 +96,10 @@ class _HomePageState extends State<HomePage> {
                                 final category = value[index];
 
                                 return InkWell(
+                                  onTap: () {
+                                    context
+                                        .push("/home/category/${category.id}");
+                                  },
                                   child: Column(
                                     children: [
                                       CircleAvatar(
