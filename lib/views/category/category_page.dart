@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_wabiz_client/theme.dart';
 import 'package:gap/gap.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -108,6 +109,136 @@ class _CategoryPageState extends State<CategoryPage> {
                   ),
                 );
               },
+            ),
+          ),
+          const Divider(
+            height: 8,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                    ),
+                    child: Row(
+                      children: [
+                        DropdownButton(
+                          items: const [
+                            DropdownMenuItem(
+                              child: Text('전체'),
+                            )
+                          ],
+                          onChanged: (value) {},
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          underline: const SizedBox.shrink(),
+                        ),
+                        const Gap(24),
+                        DropdownButton(
+                          items: const [
+                            DropdownMenuItem(
+                              child: Text('추천순'),
+                            )
+                          ],
+                          onChanged: (value) {},
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          underline: const SizedBox.shrink(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 24),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 164,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.blue,
+                                  ),
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        right: 2,
+                                        top: 2,
+                                        child: IconButton(
+                                          onPressed: () {},
+                                          icon:
+                                              const Icon(Icons.favorite_border),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                const Gap(16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        '[내 손안의 와이파이] 와이파이 6와이파이 6',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      const Gap(8),
+                                      Text(
+                                        "홍길동",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: AppColors.wabizGray[500],
+                                        ),
+                                      ),
+                                      const Gap(8),
+                                      const Text(
+                                        '1,000 명 참여',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: AppColors.primaryColor,
+                                        ),
+                                      ),
+                                      const Gap(8),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 6,
+                                          vertical: 4,
+                                        ),
+                                        decoration: const BoxDecoration(
+                                          color: AppColors.bg,
+                                        ),
+                                        child: const Text(
+                                          '1,000원',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
