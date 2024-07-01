@@ -6,8 +6,8 @@ part of 'category_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CategoryMOdelImpl _$$CategoryMOdelImplFromJson(Map<String, dynamic> json) =>
-    _$CategoryMOdelImpl(
+_$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
+    _$CategoryModelImpl(
       status: json['status'] as String?,
       totalCount: (json['total_count'] as num?)?.toInt(),
       projects: (json['projects'] as List<dynamic>?)
@@ -17,7 +17,7 @@ _$CategoryMOdelImpl _$$CategoryMOdelImplFromJson(Map<String, dynamic> json) =>
           const [],
     );
 
-Map<String, dynamic> _$$CategoryMOdelImplToJson(_$CategoryMOdelImpl instance) =>
+Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
       'total_count': instance.totalCount,

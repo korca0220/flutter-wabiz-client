@@ -14,36 +14,36 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-CategoryMOdel _$CategoryMOdelFromJson(Map<String, dynamic> json) {
-  return _CategoryMOdel.fromJson(json);
+CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
+  return _CategoryModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CategoryMOdel {
+mixin _$CategoryModel {
   String? get status => throw _privateConstructorUsedError;
   int? get totalCount => throw _privateConstructorUsedError;
   List<CategoryItemModel> get projects => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CategoryMOdelCopyWith<CategoryMOdel> get copyWith =>
+  $CategoryModelCopyWith<CategoryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CategoryMOdelCopyWith<$Res> {
-  factory $CategoryMOdelCopyWith(
-          CategoryMOdel value, $Res Function(CategoryMOdel) then) =
-      _$CategoryMOdelCopyWithImpl<$Res, CategoryMOdel>;
+abstract class $CategoryModelCopyWith<$Res> {
+  factory $CategoryModelCopyWith(
+          CategoryModel value, $Res Function(CategoryModel) then) =
+      _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
   @useResult
   $Res call(
       {String? status, int? totalCount, List<CategoryItemModel> projects});
 }
 
 /// @nodoc
-class _$CategoryMOdelCopyWithImpl<$Res, $Val extends CategoryMOdel>
-    implements $CategoryMOdelCopyWith<$Res> {
-  _$CategoryMOdelCopyWithImpl(this._value, this._then);
+class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
+    implements $CategoryModelCopyWith<$Res> {
+  _$CategoryModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -75,11 +75,11 @@ class _$CategoryMOdelCopyWithImpl<$Res, $Val extends CategoryMOdel>
 }
 
 /// @nodoc
-abstract class _$$CategoryMOdelImplCopyWith<$Res>
-    implements $CategoryMOdelCopyWith<$Res> {
-  factory _$$CategoryMOdelImplCopyWith(
-          _$CategoryMOdelImpl value, $Res Function(_$CategoryMOdelImpl) then) =
-      __$$CategoryMOdelImplCopyWithImpl<$Res>;
+abstract class _$$CategoryModelImplCopyWith<$Res>
+    implements $CategoryModelCopyWith<$Res> {
+  factory _$$CategoryModelImplCopyWith(
+          _$CategoryModelImpl value, $Res Function(_$CategoryModelImpl) then) =
+      __$$CategoryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -87,11 +87,11 @@ abstract class _$$CategoryMOdelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$CategoryMOdelImplCopyWithImpl<$Res>
-    extends _$CategoryMOdelCopyWithImpl<$Res, _$CategoryMOdelImpl>
-    implements _$$CategoryMOdelImplCopyWith<$Res> {
-  __$$CategoryMOdelImplCopyWithImpl(
-      _$CategoryMOdelImpl _value, $Res Function(_$CategoryMOdelImpl) _then)
+class __$$CategoryModelImplCopyWithImpl<$Res>
+    extends _$CategoryModelCopyWithImpl<$Res, _$CategoryModelImpl>
+    implements _$$CategoryModelImplCopyWith<$Res> {
+  __$$CategoryModelImplCopyWithImpl(
+      _$CategoryModelImpl _value, $Res Function(_$CategoryModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -101,7 +101,7 @@ class __$$CategoryMOdelImplCopyWithImpl<$Res>
     Object? totalCount = freezed,
     Object? projects = null,
   }) {
-    return _then(_$CategoryMOdelImpl(
+    return _then(_$CategoryModelImpl(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -121,15 +121,15 @@ class __$$CategoryMOdelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$CategoryMOdelImpl implements _CategoryMOdel {
-  const _$CategoryMOdelImpl(
+class _$CategoryModelImpl implements _CategoryModel {
+  const _$CategoryModelImpl(
       {this.status,
       this.totalCount,
       final List<CategoryItemModel> projects = const []})
       : _projects = projects;
 
-  factory _$CategoryMOdelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CategoryMOdelImplFromJson(json);
+  factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CategoryModelImplFromJson(json);
 
   @override
   final String? status;
@@ -146,14 +146,14 @@ class _$CategoryMOdelImpl implements _CategoryMOdel {
 
   @override
   String toString() {
-    return 'CategoryMOdel(status: $status, totalCount: $totalCount, projects: $projects)';
+    return 'CategoryModel(status: $status, totalCount: $totalCount, projects: $projects)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CategoryMOdelImpl &&
+            other is _$CategoryModelImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount) &&
@@ -168,25 +168,25 @@ class _$CategoryMOdelImpl implements _CategoryMOdel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CategoryMOdelImplCopyWith<_$CategoryMOdelImpl> get copyWith =>
-      __$$CategoryMOdelImplCopyWithImpl<_$CategoryMOdelImpl>(this, _$identity);
+  _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>
+      __$$CategoryModelImplCopyWithImpl<_$CategoryModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CategoryMOdelImplToJson(
+    return _$$CategoryModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _CategoryMOdel implements CategoryMOdel {
-  const factory _CategoryMOdel(
+abstract class _CategoryModel implements CategoryModel {
+  const factory _CategoryModel(
       {final String? status,
       final int? totalCount,
-      final List<CategoryItemModel> projects}) = _$CategoryMOdelImpl;
+      final List<CategoryItemModel> projects}) = _$CategoryModelImpl;
 
-  factory _CategoryMOdel.fromJson(Map<String, dynamic> json) =
-      _$CategoryMOdelImpl.fromJson;
+  factory _CategoryModel.fromJson(Map<String, dynamic> json) =
+      _$CategoryModelImpl.fromJson;
 
   @override
   String? get status;
@@ -196,7 +196,7 @@ abstract class _CategoryMOdel implements CategoryMOdel {
   List<CategoryItemModel> get projects;
   @override
   @JsonKey(ignore: true)
-  _$$CategoryMOdelImplCopyWith<_$CategoryMOdelImpl> get copyWith =>
+  _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

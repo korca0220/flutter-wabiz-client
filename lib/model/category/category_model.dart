@@ -6,16 +6,16 @@ part 'category_model.freezed.dart';
 part 'category_model.g.dart';
 
 @freezed
-class CategoryMOdel with _$CategoryMOdel {
+class CategoryModel with _$CategoryModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory CategoryMOdel({
+  const factory CategoryModel({
     String? status,
     int? totalCount,
     @Default([]) List<CategoryItemModel> projects,
-  }) = _CategoryMOdel;
+  }) = _CategoryModel;
 
-  factory CategoryMOdel.fromJson(Map<String, dynamic> json) =>
-      _$CategoryMOdelFromJson(json);
+  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryModelFromJson(json);
 }
 
 @freezed
