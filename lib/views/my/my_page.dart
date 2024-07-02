@@ -22,6 +22,7 @@ class MyPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
+              color: Colors.white,
               height: 470,
               padding: const EdgeInsets.all(16),
               child: Column(

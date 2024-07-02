@@ -10,7 +10,7 @@ MyRepositoryImpl myRepository(MyRepositoryRef ref) {
 abstract interface class MyRepository {
   Future getProjectsByUserId(String userId);
 
-  Future updateProjectOpenState();
+  Future updateProjectOpenState(String id);
 
   Future deleteProject(String id);
 }
@@ -29,7 +29,7 @@ class MyRepositoryImpl implements MyRepository {
   }
 
   @override
-  Future updateProjectOpenState() {
+  Future updateProjectOpenState(String id) {
     // TODO: implement updateProjectOpenState
     throw UnimplementedError();
   }
