@@ -16,15 +16,24 @@ class WabizAppShell extends StatefulWidget {
 }
 
 class _WabizAppShellState extends State<WabizAppShell> {
+  void _onTapTab(int index) {
+    switch (index) {
+      case 0:
+        context.go('/home');
+
+      case 3:
+        context.go('/my');
+      default:
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: widget.currentIndex,
-        onTap: (index) {
-          context.go('/home');
-        },
+        onTap: (index) => _onTapTab(index),
         items: [
           const BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),

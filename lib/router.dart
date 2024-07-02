@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wabiz_client/views/category/category_page.dart';
 import 'package:flutter_wabiz_client/views/home/home_page.dart';
+import 'package:flutter_wabiz_client/views/my/my_page.dart';
 import 'package:flutter_wabiz_client/views/wabiz_app_shell.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,7 +15,10 @@ final router = GoRouter(
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
       builder: (context, state, child) => WabizAppShell(
-        currentIndex: 0,
+        currentIndex: switch (state.uri.path) {
+          var p when p.startsWith("/my") => 3,
+          _ => 0,
+        },
         child: child,
       ),
       routes: [
@@ -34,6 +38,11 @@ final router = GoRouter(
               },
             ),
           ],
+        ),
+        GoRoute(
+          path: '/my',
+          parentNavigatorKey: _shellNavigatorKey,
+          builder: (context, state) => const MyPage(),
         ),
       ],
     ),

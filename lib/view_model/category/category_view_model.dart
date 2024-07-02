@@ -107,8 +107,6 @@ class CategoryViewModel extends _$CategoryViewModel {
 
 @riverpod
 Future<List<ProjectType>> fetchTypeTabs(FetchTypeTabsRef ref) async {
-  await Future.delayed(const Duration(milliseconds: 500));
-
   return [
     ProjectType(id: 0, type: "전체", imagePath: "assets/icons/type/all.svg"),
     ProjectType(
