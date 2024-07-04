@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter_wabiz_client/shared/model/response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -43,6 +46,29 @@ class LoginViewModel extends _$LoginViewModel {
     }
 
     return false;
+  }
+
+  Future<ResponseModel?> signIn(String email, String password) async {
+    final result = await ref.watch(loginRepositoryProvider).signIn(
+          LoginModel(
+            email: email,
+            password: password,
+          ),
+        );
+
+    if (result != null) {
+      final data = LoginModel.fromJson(jsonDecode(result.body ?? ""));
+
+      state = state.copyWith(
+        isLogin: true,
+        userId: data.id,
+        email: data.email,
+        password: data.password,
+        username: data.username,
+      );
+    }
+
+    return result;
   }
 
   Future<bool> checkEmail(LoginModel body) async {

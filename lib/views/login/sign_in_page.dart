@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_wabiz_client/theme.dart';
+import 'package:flutter_wabiz_client/view_model/login/login_view_model.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -78,25 +80,44 @@ class _SignInPageState extends State<SignInPage> {
               ],
             ),
             const Gap(24),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: AppColors.secondaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Center(
-                  child: Text(
-                    '이메일로 로그인하기',
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
+            Consumer(
+              builder: (context, ref, child) {
+                return GestureDetector(
+                  onTap: () async {
+                    if (emailController.text.isEmpty ||
+                        passwordController.text.isEmpty) return;
+
+                    final result =
+                        await ref.read(loginViewModelProvider.notifier).signIn(
+                              emailController.text.trim(),
+                              passwordController.text.trim(),
+                            );
+
+                    if (result != null) {
+                      if (context.mounted) {
+                        context.go('/my');
+                      }
+                    }
+                  },
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: AppColors.secondaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        '이메일로 로그인하기',
+                        style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
             const Gap(24),
             Row(

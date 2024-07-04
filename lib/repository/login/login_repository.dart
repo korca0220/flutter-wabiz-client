@@ -10,6 +10,7 @@ part 'login_repository.g.dart';
 abstract class LoginRepository {
   Future<ResponseModel> signUp(LoginModel body);
   Future<ResponseModel> checkEmail(LoginModel body);
+  Future<ResponseModel?> signIn(LoginModel body);
 }
 
 final class LoginRepositoryImpl implements LoginRepository {
@@ -29,6 +30,15 @@ final class LoginRepositoryImpl implements LoginRepository {
     final result = await loginApiService.checkEmail(body);
 
     return result;
+  }
+
+  @override
+  Future<ResponseModel?> signIn(LoginModel body) async {
+    final result = await loginApiService.signIn(body);
+
+    if (result.response.statusCode == 204) return null;
+
+    return ResponseModel.fromJson(result.response.data);
   }
 }
 

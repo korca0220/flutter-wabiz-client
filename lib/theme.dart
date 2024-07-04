@@ -76,7 +76,7 @@ class AppColors extends Color {
   static const Color secondaryColor = Color(0xffe2f9f9);
   static const Color white = Colors.white;
   static const Color bg = Color(0xfff2f2f7);
-  static const Color newBg = Color(0xfff2f4f6);
+  static const Color newBg = Color.fromARGB(146, 254, 255, 233);
   static const int _grayPrimaryValue = 0xff848487;
 
   static const MaterialColor wabizGray =
