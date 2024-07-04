@@ -6,7 +6,7 @@ import 'login_api.dart';
 
 part 'login_api_service.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 LoginApi loginApiService(LoginApiServiceRef ref) {
   final dio = ref.watch(dioProvider);
 

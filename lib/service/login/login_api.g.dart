@@ -21,11 +21,11 @@ class _LoginApi implements LoginApi {
   String? baseUrl;
 
   @override
-  Future<ResponseModel> login(LoginModel loginModel) async {
+  Future<ResponseModel> signUp(LoginModel body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = loginModel;
+    final _data = body;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ResponseModel>(Options(
       method: 'POST',
@@ -35,6 +35,33 @@ class _LoginApi implements LoginApi {
             .compose(
               _dio.options,
               '/signup',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ResponseModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseModel> checkEmail(LoginModel body) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = body;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ResponseModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/checkauth',
               queryParameters: queryParameters,
               data: _data,
             )

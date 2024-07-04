@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../model/login/login_model.dart';
@@ -11,7 +12,10 @@ abstract class LoginApi {
   factory LoginApi(Dio dio, {String baseUrl}) = _LoginApi;
 
   @POST("/signup")
-  Future<ResponseModel> login(
-    @Body() LoginModel loginModel,
+  Future<ResponseModel> signUp(
+    @Body() LoginModel body,
   );
+
+  @GET("/checkauth")
+  Future<ResponseModel> checkEmail(@Body() LoginModel body);
 }
