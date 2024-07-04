@@ -14,6 +14,8 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void dispose() {
     emailController.dispose();
@@ -41,6 +43,7 @@ class _SignInPageState extends State<SignInPage> {
             ),
             const Gap(32),
             Form(
+              key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
