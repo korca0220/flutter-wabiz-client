@@ -82,6 +82,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       builder: (context, ref, child) {
                         return GestureDetector(
                           onTap: () async {
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
+                            }
                             final result = await ref
                                 .read(loginViewModelProvider.notifier)
                                 .checkEmail(
