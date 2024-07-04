@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_wabiz_client/theme.dart';
 import 'package:flutter_wabiz_client/view_model/login/login_view_model.dart';
+import 'package:flutter_wabiz_client/view_model/my/my_view_model.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,7 +24,7 @@ class MyPage extends StatelessWidget {
       ),
       body: Consumer(
         builder: (context, ref, child) {
-          final loginState = ref.watch(loginViewModelProvider);
+          final myPageState = ref.watch(myPageViewModelProvider);
 
           return SingleChildScrollView(
             child: Column(
@@ -35,67 +36,102 @@ class MyPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Consumer(
-                        builder: (context, ref, child) {
-                          if (loginState.isLogin) {
-                            return Row(
+                      if (myPageState.loginState ?? false) ...{
+                        Row(
+                          children: [
+                            const CircleAvatar(
+                              radius: 24,
+                              backgroundColor: AppColors.bg,
+                            ),
+                            const Gap(8),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("${myPageState.loginModel?.email}"),
+                                  const Gap(4),
+                                  Text(
+                                    "${myPageState.loginModel?.username} 님 안녕하세요?",
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            IconButton(
+                              tooltip: "로그아웃",
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: const Text("로그아웃"),
+                                        content: const Text("로그아웃 하시겠습니까?"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              context.pop();
+                                            },
+                                            child: const Text("취소"),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              ref
+                                                  .read(loginViewModelProvider
+                                                      .notifier)
+                                                  .signOut();
+                                              context.pop();
+                                            },
+                                            child: const Text("확인"),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              icon: const Icon(
+                                Icons.logout,
+                              ),
+                            ),
+                          ],
+                        ),
+                      } else ...{
+                        Row(
+                          children: [
+                            const CircleAvatar(
+                              radius: 24,
+                              backgroundColor: AppColors.bg,
+                            ),
+                            const Gap(8),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const CircleAvatar(
-                                  radius: 24,
-                                  backgroundColor: AppColors.bg,
-                                ),
-                                const Gap(8),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                InkWell(
+                                  onTap: () {
+                                    context.push('/sign-in');
+                                  },
+                                  child: const Row(
                                     children: [
-                                      Text("${loginState.email}"),
-                                      const Gap(4),
-                                      Text("${loginState.username}"),
+                                      Text('로그인하기'),
+                                      Icon(
+                                        Icons.keyboard_arrow_right,
+                                      )
                                     ],
                                   ),
                                 ),
-                              ],
-                            );
-                          } else {
-                            return Row(
-                              children: [
-                                const CircleAvatar(
-                                  radius: 24,
-                                  backgroundColor: AppColors.bg,
-                                ),
-                                const Gap(8),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        context.push('/sign-in');
-                                      },
-                                      child: const Row(
-                                        children: [
-                                          Text('로그인하기'),
-                                          Icon(
-                                            Icons.keyboard_arrow_right,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    const Gap(4),
-                                    const Text(
-                                      "로그인 후 다양한 프로젝트에 참여해보세요.",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    )
-                                  ],
+                                const Gap(4),
+                                const Text(
+                                  "로그인 후 다양한 프로젝트에 참여해보세요.",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 )
                               ],
-                            );
-                          }
-                        },
-                      ),
+                            )
+                          ],
+                        ),
+                      },
                       Column(
                         children: [
                           CircleAvatar(
@@ -130,7 +166,34 @@ class MyPage extends StatelessWidget {
                         ],
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          if (!(myPageState.loginState ?? true)) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text("로그인"),
+                                  content: const Text("로그인 후 프로젝트를 만들 수 있습니다."),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        context.pop();
+                                      },
+                                      child: const Text("취소"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        context.pop();
+                                        context.push('/sign-in');
+                                      },
+                                      child: const Text("로그인"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        },
                         child: Container(
                           height: 50,
                           decoration: BoxDecoration(

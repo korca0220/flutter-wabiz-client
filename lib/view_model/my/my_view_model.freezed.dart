@@ -21,6 +21,7 @@ MyPageState _$MyPageStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MyPageState {
   bool? get loginState => throw _privateConstructorUsedError;
+  LoginModel? get loginModel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,9 @@ abstract class $MyPageStateCopyWith<$Res> {
           MyPageState value, $Res Function(MyPageState) then) =
       _$MyPageStateCopyWithImpl<$Res, MyPageState>;
   @useResult
-  $Res call({bool? loginState});
+  $Res call({bool? loginState, LoginModel? loginModel});
+
+  $LoginModelCopyWith<$Res>? get loginModel;
 }
 
 /// @nodoc
@@ -51,13 +54,30 @@ class _$MyPageStateCopyWithImpl<$Res, $Val extends MyPageState>
   @override
   $Res call({
     Object? loginState = freezed,
+    Object? loginModel = freezed,
   }) {
     return _then(_value.copyWith(
       loginState: freezed == loginState
           ? _value.loginState
           : loginState // ignore: cast_nullable_to_non_nullable
               as bool?,
+      loginModel: freezed == loginModel
+          ? _value.loginModel
+          : loginModel // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LoginModelCopyWith<$Res>? get loginModel {
+    if (_value.loginModel == null) {
+      return null;
+    }
+
+    return $LoginModelCopyWith<$Res>(_value.loginModel!, (value) {
+      return _then(_value.copyWith(loginModel: value) as $Val);
+    });
   }
 }
 
@@ -69,7 +89,10 @@ abstract class _$$MyPageStateImplCopyWith<$Res>
       __$$MyPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? loginState});
+  $Res call({bool? loginState, LoginModel? loginModel});
+
+  @override
+  $LoginModelCopyWith<$Res>? get loginModel;
 }
 
 /// @nodoc
@@ -84,12 +107,17 @@ class __$$MyPageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loginState = freezed,
+    Object? loginModel = freezed,
   }) {
     return _then(_$MyPageStateImpl(
       loginState: freezed == loginState
           ? _value.loginState
           : loginState // ignore: cast_nullable_to_non_nullable
               as bool?,
+      loginModel: freezed == loginModel
+          ? _value.loginModel
+          : loginModel // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
     ));
   }
 }
@@ -97,17 +125,19 @@ class __$$MyPageStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MyPageStateImpl implements _MyPageState {
-  _$MyPageStateImpl({this.loginState});
+  _$MyPageStateImpl({this.loginState, this.loginModel});
 
   factory _$MyPageStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$MyPageStateImplFromJson(json);
 
   @override
   final bool? loginState;
+  @override
+  final LoginModel? loginModel;
 
   @override
   String toString() {
-    return 'MyPageState(loginState: $loginState)';
+    return 'MyPageState(loginState: $loginState, loginModel: $loginModel)';
   }
 
   @override
@@ -116,12 +146,14 @@ class _$MyPageStateImpl implements _MyPageState {
         (other.runtimeType == runtimeType &&
             other is _$MyPageStateImpl &&
             (identical(other.loginState, loginState) ||
-                other.loginState == loginState));
+                other.loginState == loginState) &&
+            (identical(other.loginModel, loginModel) ||
+                other.loginModel == loginModel));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, loginState);
+  int get hashCode => Object.hash(runtimeType, loginState, loginModel);
 
   @JsonKey(ignore: true)
   @override
@@ -138,13 +170,16 @@ class _$MyPageStateImpl implements _MyPageState {
 }
 
 abstract class _MyPageState implements MyPageState {
-  factory _MyPageState({final bool? loginState}) = _$MyPageStateImpl;
+  factory _MyPageState({final bool? loginState, final LoginModel? loginModel}) =
+      _$MyPageStateImpl;
 
   factory _MyPageState.fromJson(Map<String, dynamic> json) =
       _$MyPageStateImpl.fromJson;
 
   @override
   bool? get loginState;
+  @override
+  LoginModel? get loginModel;
   @override
   @JsonKey(ignore: true)
   _$$MyPageStateImplCopyWith<_$MyPageStateImpl> get copyWith =>

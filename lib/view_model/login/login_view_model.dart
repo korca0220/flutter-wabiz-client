@@ -38,6 +38,16 @@ class LoginViewModel extends _$LoginViewModel {
     return LoginState.init();
   }
 
+  void signOut() {
+    state = state.copyWith(
+      isLogin: false,
+      userId: 0,
+      email: "",
+      password: "",
+      username: "",
+    );
+  }
+
   Future<bool> signUp(LoginModel body) async {
     final result = await ref.watch(loginRepositoryProvider).signUp(body);
 

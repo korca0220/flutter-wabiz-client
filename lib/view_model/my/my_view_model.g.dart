@@ -9,18 +9,22 @@ part of 'my_view_model.dart';
 _$MyPageStateImpl _$$MyPageStateImplFromJson(Map<String, dynamic> json) =>
     _$MyPageStateImpl(
       loginState: json['loginState'] as bool?,
+      loginModel: json['loginModel'] == null
+          ? null
+          : LoginModel.fromJson(json['loginModel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MyPageStateImplToJson(_$MyPageStateImpl instance) =>
     <String, dynamic>{
       'loginState': instance.loginState,
+      'loginModel': instance.loginModel,
     };
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$myPageViewModelHash() => r'62997b21de3320ade36161dca3f7c6028eaf3bd6';
+String _$myPageViewModelHash() => r'7c920405d530c8babfca2336210c204081fecab3';
 
 /// See also [MyPageViewModel].
 @ProviderFor(MyPageViewModel)
