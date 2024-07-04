@@ -21,6 +21,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  bool validate = false;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -95,6 +97,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
                             if (context.mounted) {
                               if (result) {
+                                validate = true;
+
                                 showDialog(
                                   context: context,
                                   builder: (context) {
@@ -107,6 +111,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                   },
                                 );
                               } else {
+                                validate = false;
+
                                 showDialog(
                                     context: context,
                                     builder: (context) {
@@ -230,7 +236,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   builder: (context, ref, child) {
                     return GestureDetector(
                       onTap: () async {
-                        if (formKey.currentState!.validate()) {
+                        if (formKey.currentState!.validate() && validate) {
                           formKey.currentState!.save();
                           final result = await ref
                               .read(loginViewModelProvider.notifier)

@@ -41,7 +41,7 @@ class MyPage extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              context.push('/sign-up');
+                              context.push('/sign-in');
                             },
                             child: const Row(
                               children: [
