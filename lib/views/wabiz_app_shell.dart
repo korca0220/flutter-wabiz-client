@@ -20,7 +20,8 @@ class _WabizAppShellState extends State<WabizAppShell> {
     switch (index) {
       case 0:
         context.go('/home');
-
+      case 1:
+        context.go('/add');
       case 3:
         context.go('/my');
       default:

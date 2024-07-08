@@ -4,6 +4,8 @@ import 'package:flutter_wabiz_client/views/home/home_page.dart';
 import 'package:flutter_wabiz_client/views/login/sign_in_page.dart';
 import 'package:flutter_wabiz_client/views/login/sign_up_page.dart';
 import 'package:flutter_wabiz_client/views/my/my_page.dart';
+import 'package:flutter_wabiz_client/views/project/add_project_page.dart';
+import 'package:flutter_wabiz_client/views/project/add_reward_page.dart';
 import 'package:flutter_wabiz_client/views/wabiz_app_shell.dart';
 import 'package:go_router/go_router.dart';
 
@@ -55,6 +57,23 @@ final router = GoRouter(
           path: '/my',
           parentNavigatorKey: _shellNavigatorKey,
           builder: (context, state) => const MyPage(),
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/add',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const AddProjectPage(),
+      routes: [
+        GoRoute(
+          path: 'reward/:id',
+          builder: (context, state) {
+            final projectId = state.extra as String;
+
+            return AddRewardPage(
+              projectId: projectId,
+            );
+          },
         ),
       ],
     ),
