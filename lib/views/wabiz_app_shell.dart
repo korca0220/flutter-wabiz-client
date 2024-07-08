@@ -21,7 +21,7 @@ class _WabizAppShellState extends State<WabizAppShell> {
       case 0:
         context.go('/home');
       case 1:
-        context.go('/add');
+        context.push('/add');
       case 3:
         context.go('/my');
       default:
