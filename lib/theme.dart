@@ -11,7 +11,7 @@ final ThemeData wabizDefaultTheme = ThemeData(
   ),
   primaryColor: AppColors.primaryColor,
   appBarTheme: const AppBarTheme(
-    backgroundColor: AppColors.scaffoldBackgroundColor,
+    backgroundColor: AppColors.white,
     foregroundColor: Colors.black,
     surfaceTintColor: Colors.white,
   ),

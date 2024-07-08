@@ -167,6 +167,8 @@ class MyPage extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
+                          context.push("/add/reward/0", extra: "0");
+
                           if (!(myPageState.loginState ?? true)) {
                             showDialog(
                               context: context,
