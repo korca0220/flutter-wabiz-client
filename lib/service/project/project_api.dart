@@ -7,7 +7,7 @@ import '../../shared/model/response_model.dart';
 
 part 'project_api.g.dart';
 
-@RestApi(baseUrl: "http://localhost:3000/api/vi")
+@RestApi(baseUrl: "http://localhost:3000/api/v1")
 abstract class ProjectApi {
   factory ProjectApi(Dio dio, {String baseUrl}) = _ProjectApi;
 

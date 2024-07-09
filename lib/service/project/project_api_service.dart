@@ -9,7 +9,7 @@ part 'project_api_service.g.dart';
 ProjectApi projectApiService(ProjectApiServiceRef ref) {
   final dio = ref.watch(dioProvider);
 
-  var localhost = "http://localhost:3000/api/v1";
+  var localhost = "localhost";
   if (defaultTargetPlatform == TargetPlatform.android) {
     localhost = "10.0.2.2";
   }
