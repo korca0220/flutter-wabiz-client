@@ -24,7 +24,7 @@ Map<String, dynamic> _$$MyPageStateImplToJson(_$MyPageStateImpl instance) =>
 // RiverpodGenerator
 // **************************************************************************
 
-String _$myPageViewModelHash() => r'7c920405d530c8babfca2336210c204081fecab3';
+String _$myPageViewModelHash() => r'fb0a943e748efcbec13b47794074956997e133fd';
 
 /// See also [MyPageViewModel].
 @ProviderFor(MyPageViewModel)
