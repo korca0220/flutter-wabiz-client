@@ -52,48 +52,53 @@ Future<List<ProjectCategory>> fetchHomeCategories(
   List<ProjectCategory> categories = [
     ProjectCategory(
       id: 1,
-      title: "펀딩+",
       iconPath: "assets/icons/categories/1.png",
-    ),
-    ProjectCategory(
-      id: 2,
-      title: "오픈예정",
-      iconPath: "assets/icons/categories/2.png",
-    ),
-    ProjectCategory(
-      id: 3,
-      title: "인기",
-      iconPath: "assets/icons/categories/3.png",
-    ),
-    ProjectCategory(
-      id: 4,
-      title: "최신",
-      iconPath: "assets/icons/categories/4.png",
+      title: "펀딩+",
     ),
     ProjectCategory(
       id: 5,
-      title: "마감임박",
       iconPath: "assets/icons/categories/5.png",
+      title: "혜택",
+    ),
+    ProjectCategory(
+      id: 2,
+      iconPath: "assets/icons/categories/2.png",
+      title: "오픈예정",
     ),
     ProjectCategory(
       id: 6,
-      title: "테마",
       iconPath: "assets/icons/categories/6.png",
+      title: "펀딩체험단",
+    ),
+    ProjectCategory(
+      id: 3,
+      iconPath: "assets/icons/categories/3.png",
+      title: "스토어",
     ),
     ProjectCategory(
       id: 7,
-      title: "펀딩중",
       iconPath: "assets/icons/categories/7.png",
+      title: "뷰티워크",
+    ),
+    ProjectCategory(
+      id: 4,
+      iconPath: "assets/icons/categories/4.png",
+      title: "예약구매",
     ),
     ProjectCategory(
       id: 8,
-      title: "펀딩성공",
       iconPath: "assets/icons/categories/8.png",
+      title: "새학기출발",
+    ),
+    ProjectCategory(
+      id: 5,
+      iconPath: "assets/icons/categories/5.png",
+      title: "혜택",
     ),
     ProjectCategory(
       id: 9,
-      title: "펀딩실패",
       iconPath: "assets/icons/categories/9.png",
+      title: "클래스수강",
     ),
   ];
 

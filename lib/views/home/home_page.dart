@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -168,6 +170,12 @@ class _HomePageState extends State<HomePage> {
                             final project = data.projects[index];
 
                             return InkWell(
+                              onTap: () {
+                                context.push(
+                                  '/detail',
+                                  extra: jsonEncode(project.toJson()),
+                                );
+                              },
                               child: Container(
                                 margin: const EdgeInsets.only(
                                   bottom: 8,
