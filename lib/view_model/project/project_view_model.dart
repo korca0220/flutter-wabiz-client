@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_wabiz_client/model/project/project_model.dart';
+import 'package:flutter_wabiz_client/model/project/reward_model.dart';
 import 'package:flutter_wabiz_client/repository/project/project_repository.dart';
 import 'package:flutter_wabiz_client/shared/model/project_type.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -68,11 +69,52 @@ class ProjectViewModel extends _$ProjectViewModel {
 
     state = ProjectItemModel.fromJson(jsonDecode(result.body ?? '{}'));
 
-    print(state);
     if (result.status == "ok") {
       return true;
     }
 
     return false;
+  }
+
+  Future<bool> createProjectReward(String id, RewardItemModel body) async {
+    final result = await ref
+        .watch(projectRepositoryProvider)
+        .createProjectReward(id, body);
+
+    if (result?.status == "ok") {
+      return true;
+    }
+
+    return false;
+  }
+
+  Future<bool> updateProjectOpenState(String id, ProjectItemModel body) async {
+    final result =
+        await ref.watch(projectRepositoryProvider).updateProjectOpenState(
+              id,
+              body,
+            );
+
+    if (result?.status == "ok") {
+      return true;
+    }
+
+    return false;
+  }
+
+  Future<bool> deleteProjectOpenState(String id) async {
+    final result = await ref.watch(projectRepositoryProvider).deleteProject(
+          id,
+        );
+
+    if (result?.status == "ok") {
+      return true;
+    }
+
+    return false;
+  }
+
+  void updateProjectId(int id) {
+    state = state?.copyWith(id: id);
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_wabiz_client/shared/enum/enum_project_class.dart';
 import 'package:flutter_wabiz_client/shared/model/project_type.dart';
 import 'package:flutter_wabiz_client/theme.dart';
+import 'package:flutter_wabiz_client/view_model/login/login_view_model.dart';
 import 'package:flutter_wabiz_client/view_model/project/project_view_model.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -392,13 +393,16 @@ class _AddProjectPageState extends State<AddProjectPage> {
                               price: int.tryParse(
                                   priceTextEditingController.text.trim()),
                               projectClass: enumProjectClass.title,
-                              userId: "1",
+                              userId: ref
+                                  .read(loginViewModelProvider)
+                                  .userId
+                                  .toString(),
                               projectImage: selectedImage ?? [],
                             ),
                           );
 
                       if (response) {
-                        if (context.mounted) {
+                        if (context.mounted) {  
                           showDialog(
                               context: context,
                               builder: (context) {

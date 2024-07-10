@@ -1,7 +1,10 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_wabiz_client/model/project/reward_model.dart';
 import 'package:flutter_wabiz_client/theme.dart';
+import 'package:flutter_wabiz_client/view_model/project/project_view_model.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -138,24 +141,64 @@ class _AddRewardPageState extends State<AddRewardPage> {
                     ),
                     const Gap(12),
                     Expanded(
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.primaryColor,
-                          ),
-                          child: const Center(
-                            child: Text(
-                              '추가',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
+                      child: Consumer(
+                        builder: (context, ref, child) {
+                          return GestureDetector(
+                            onTap: () async {
+                              final result = await ref
+                                  .read(projectViewModelProvider.notifier)
+                                  .createProjectReward(
+                                    widget.projectId,
+                                    RewardItemModel(
+                                      title: titleTextController.text.trim(),
+                                      price: int.tryParse(
+                                          priceTextController.text.trim()),
+                                      description:
+                                          descriptionTextController.text.trim(),
+                                      imageRaw: [],
+                                      imageUrl: "",
+                                    ),
+                                  );
+
+                              if (result) {
+                                if (context.mounted) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: const Text("리워드 추가"),
+                                          content: const Text("리워드가 등록 성공."),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                context.go("/my");
+                                              },
+                                              child: const Text("확인"),
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                }
+                              }
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColors.primaryColor,
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  '추가',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                     )
                   ],
