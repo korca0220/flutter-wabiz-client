@@ -172,6 +172,154 @@ class _FetchProjectByIdProviderElement
   String get id => (origin as FetchProjectByIdProvider).id;
 }
 
+String _$projectDetailViewModelHash() =>
+    r'f0e3650682522a53f89c8461e44ae61ad9ff6848';
+
+abstract class _$ProjectDetailViewModel
+    extends BuildlessAutoDisposeAsyncNotifier<ProjectItemModel?> {
+  late final String id;
+
+  FutureOr<ProjectItemModel?> build(
+    String id,
+  );
+}
+
+/// See also [ProjectDetailViewModel].
+@ProviderFor(ProjectDetailViewModel)
+const projectDetailViewModelProvider = ProjectDetailViewModelFamily();
+
+/// See also [ProjectDetailViewModel].
+class ProjectDetailViewModelFamily
+    extends Family<AsyncValue<ProjectItemModel?>> {
+  /// See also [ProjectDetailViewModel].
+  const ProjectDetailViewModelFamily();
+
+  /// See also [ProjectDetailViewModel].
+  ProjectDetailViewModelProvider call(
+    String id,
+  ) {
+    return ProjectDetailViewModelProvider(
+      id,
+    );
+  }
+
+  @override
+  ProjectDetailViewModelProvider getProviderOverride(
+    covariant ProjectDetailViewModelProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'projectDetailViewModelProvider';
+}
+
+/// See also [ProjectDetailViewModel].
+class ProjectDetailViewModelProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<ProjectDetailViewModel,
+        ProjectItemModel?> {
+  /// See also [ProjectDetailViewModel].
+  ProjectDetailViewModelProvider(
+    String id,
+  ) : this._internal(
+          () => ProjectDetailViewModel()..id = id,
+          from: projectDetailViewModelProvider,
+          name: r'projectDetailViewModelProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$projectDetailViewModelHash,
+          dependencies: ProjectDetailViewModelFamily._dependencies,
+          allTransitiveDependencies:
+              ProjectDetailViewModelFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  ProjectDetailViewModelProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String id;
+
+  @override
+  FutureOr<ProjectItemModel?> runNotifierBuild(
+    covariant ProjectDetailViewModel notifier,
+  ) {
+    return notifier.build(
+      id,
+    );
+  }
+
+  @override
+  Override overrideWith(ProjectDetailViewModel Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: ProjectDetailViewModelProvider._internal(
+        () => create()..id = id,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<ProjectDetailViewModel,
+      ProjectItemModel?> createElement() {
+    return _ProjectDetailViewModelProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ProjectDetailViewModelProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin ProjectDetailViewModelRef
+    on AutoDisposeAsyncNotifierProviderRef<ProjectItemModel?> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _ProjectDetailViewModelProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<ProjectDetailViewModel,
+        ProjectItemModel?> with ProjectDetailViewModelRef {
+  _ProjectDetailViewModelProviderElement(super.provider);
+
+  @override
+  String get id => (origin as ProjectDetailViewModelProvider).id;
+}
+
 String _$projectViewModelHash() => r'5f03c1592db31b12f3a42f41bbfef7ab0c1e377b';
 
 /// See also [ProjectViewModel].

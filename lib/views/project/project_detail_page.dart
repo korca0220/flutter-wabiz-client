@@ -66,8 +66,11 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
       ),
       body: Consumer(
         builder: (context, ref, child) {
-          final project = ref
-              .watch(fetchProjectByIdProvider(projectItemModel.id.toString()));
+          final project = ref.watch(
+            projectDetailViewModelProvider(
+              projectItemModel.id.toString(),
+            ),
+          );
 
           return project.when(
             error: (err, stack) => Center(
@@ -79,6 +82,12 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
               child: CircularProgressIndicator(),
             ),
             data: (projectModel) {
+              if (projectModel == null) {
+                return const Center(
+                  child: Text("데이터가 없습니다."),
+                );
+              }
+
               return Column(
                 children: [
                   Container(
@@ -109,8 +118,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                                       ? const NeverScrollableScrollPhysics()
                                       : const BouncingScrollPhysics(),
                                   child: ProjectWidget(
-                                      projectItemModel:
-                                          projectModel.data.first),
+                                      projectItemModel: projectModel),
                                 ),
                               ),
                               if (!value)
