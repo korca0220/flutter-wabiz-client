@@ -22,7 +22,7 @@ final fetchHomeProjectProvider = AutoDisposeFutureProvider<HomeModel>.internal(
 
 typedef FetchHomeProjectRef = AutoDisposeFutureProviderRef<HomeModel>;
 String _$fetchHomeCategoriesHash() =>
-    r'0f454cf45902b84c57273086e1636fd49089db93';
+    r'0313a059bef8c248b7bb67e685225a98425f21a8';
 
 /// See also [fetchHomeCategories].
 @ProviderFor(fetchHomeCategories)

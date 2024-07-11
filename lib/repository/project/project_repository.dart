@@ -30,6 +30,10 @@ abstract interface class ProjectRepository {
   Future<ProjectModel> getProjectsByUserId(
     String userId,
   );
+
+  Future<ProjectItemModel> getProjectById(
+    String id,
+  );
 }
 
 class ProjectRepositoryImpl implements ProjectRepository {
@@ -69,6 +73,13 @@ class ProjectRepositoryImpl implements ProjectRepository {
   @override
   Future<ProjectModel> getProjectsByUserId(String userId) async {
     final result = await projectApi.getProjectByUserId(userId);
+
+    return result;
+  }
+
+  @override
+  Future<ProjectItemModel> getProjectById(String id) async {
+    final result = await projectApi.getProjectById(id);
 
     return result;
   }
