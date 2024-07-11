@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wabiz_client/views/category/category_page.dart';
+import 'package:flutter_wabiz_client/views/favorite/favorite_page.dart';
 import 'package:flutter_wabiz_client/views/home/home_page.dart';
 import 'package:flutter_wabiz_client/views/login/sign_in_page.dart';
 import 'package:flutter_wabiz_client/views/login/sign_up_page.dart';
@@ -31,6 +32,7 @@ final router = GoRouter(
       navigatorKey: _shellNavigatorKey,
       builder: (context, state, child) => WabizAppShell(
         currentIndex: switch (state.uri.path) {
+          var p when p.startsWith("/favorite") => 2,
           var p when p.startsWith("/my") => 3,
           _ => 0,
         },
@@ -53,6 +55,11 @@ final router = GoRouter(
               },
             ),
           ],
+        ),
+        GoRoute(
+          path: '/favorite',
+          parentNavigatorKey: _shellNavigatorKey,
+          builder: (context, state) => const FavoritePage(),
         ),
         GoRoute(
           path: '/my',

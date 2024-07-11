@@ -22,6 +22,8 @@ class _WabizAppShellState extends ConsumerState<WabizAppShell> {
     switch (index) {
       case 0:
         context.go('/home');
+      case 2:
+        context.go('/favorite');
       case 1:
         if (ref.read(loginViewModelProvider).isLogin) {
           context.push('/add');
