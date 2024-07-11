@@ -31,7 +31,7 @@ abstract interface class ProjectRepository {
     String userId,
   );
 
-  Future<ProjectItemModel> getProjectById(
+  Future<ProjectModel> getProjectById(
     String id,
   );
 }
@@ -78,7 +78,7 @@ class ProjectRepositoryImpl implements ProjectRepository {
   }
 
   @override
-  Future<ProjectItemModel> getProjectById(String id) async {
+  Future<ProjectModel> getProjectById(String id) async {
     final result = await projectApi.getProjectById(id);
 
     return result;

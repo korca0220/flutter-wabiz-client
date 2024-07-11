@@ -39,7 +39,7 @@ abstract class ProjectApi {
   );
 
   @GET('/project/{id}')
-  Future<ProjectItemModel> getProjectById(
+  Future<ProjectModel> getProjectById(
     @Path() String id,
   );
 }

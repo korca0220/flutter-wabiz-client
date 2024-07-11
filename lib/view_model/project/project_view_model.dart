@@ -57,6 +57,14 @@ Future<List<ProjectType>> fetchProjectTypes(FetchProjectTypesRef ref) async {
 }
 
 @riverpod
+Future<ProjectModel> fetchProjectById(
+    FetchProjectByIdRef ref, String id) async {
+  final result = await ref.watch(projectRepositoryProvider).getProjectById(id);
+
+  return result;
+}
+
+@riverpod
 class ProjectViewModel extends _$ProjectViewModel {
   @override
   ProjectItemModel? build() {

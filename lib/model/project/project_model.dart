@@ -9,7 +9,7 @@ part 'project_model.g.dart';
 class ProjectModel with _$ProjectModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ProjectModel({
-    @Default([]) List<ProjectItemModel> projects,
+    @Default([]) List<ProjectItemModel> data,
   }) = _ProjectModel;
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) =>

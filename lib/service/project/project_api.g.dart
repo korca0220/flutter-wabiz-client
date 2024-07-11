@@ -162,13 +162,13 @@ class _ProjectApi implements ProjectApi {
   }
 
   @override
-  Future<ProjectItemModel> getProjectById(String id) async {
+  Future<ProjectModel> getProjectById(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ProjectItemModel>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ProjectModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -184,7 +184,7 @@ class _ProjectApi implements ProjectApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ProjectItemModel.fromJson(_result.data!);
+    final value = ProjectModel.fromJson(_result.data!);
     return value;
   }
 

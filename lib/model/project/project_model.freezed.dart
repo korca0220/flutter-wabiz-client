@@ -20,7 +20,7 @@ ProjectModel _$ProjectModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProjectModel {
-  List<ProjectItemModel> get projects => throw _privateConstructorUsedError;
+  List<ProjectItemModel> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $ProjectModelCopyWith<$Res> {
           ProjectModel value, $Res Function(ProjectModel) then) =
       _$ProjectModelCopyWithImpl<$Res, ProjectModel>;
   @useResult
-  $Res call({List<ProjectItemModel> projects});
+  $Res call({List<ProjectItemModel> data});
 }
 
 /// @nodoc
@@ -50,12 +50,12 @@ class _$ProjectModelCopyWithImpl<$Res, $Val extends ProjectModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projects = null,
+    Object? data = null,
   }) {
     return _then(_value.copyWith(
-      projects: null == projects
-          ? _value.projects
-          : projects // ignore: cast_nullable_to_non_nullable
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as List<ProjectItemModel>,
     ) as $Val);
   }
@@ -69,7 +69,7 @@ abstract class _$$ProjectModelImplCopyWith<$Res>
       __$$ProjectModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProjectItemModel> projects});
+  $Res call({List<ProjectItemModel> data});
 }
 
 /// @nodoc
@@ -83,12 +83,12 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projects = null,
+    Object? data = null,
   }) {
     return _then(_$ProjectModelImpl(
-      projects: null == projects
-          ? _value._projects
-          : projects // ignore: cast_nullable_to_non_nullable
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
               as List<ProjectItemModel>,
     ));
   }
@@ -98,24 +98,24 @@ class __$$ProjectModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$ProjectModelImpl implements _ProjectModel {
-  const _$ProjectModelImpl({final List<ProjectItemModel> projects = const []})
-      : _projects = projects;
+  const _$ProjectModelImpl({final List<ProjectItemModel> data = const []})
+      : _data = data;
 
   factory _$ProjectModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectModelImplFromJson(json);
 
-  final List<ProjectItemModel> _projects;
+  final List<ProjectItemModel> _data;
   @override
   @JsonKey()
-  List<ProjectItemModel> get projects {
-    if (_projects is EqualUnmodifiableListView) return _projects;
+  List<ProjectItemModel> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_projects);
+    return EqualUnmodifiableListView(_data);
   }
 
   @override
   String toString() {
-    return 'ProjectModel(projects: $projects)';
+    return 'ProjectModel(data: $data)';
   }
 
   @override
@@ -123,13 +123,13 @@ class _$ProjectModelImpl implements _ProjectModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectModelImpl &&
-            const DeepCollectionEquality().equals(other._projects, _projects));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_projects));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -146,14 +146,14 @@ class _$ProjectModelImpl implements _ProjectModel {
 }
 
 abstract class _ProjectModel implements ProjectModel {
-  const factory _ProjectModel({final List<ProjectItemModel> projects}) =
+  const factory _ProjectModel({final List<ProjectItemModel> data}) =
       _$ProjectModelImpl;
 
   factory _ProjectModel.fromJson(Map<String, dynamic> json) =
       _$ProjectModelImpl.fromJson;
 
   @override
-  List<ProjectItemModel> get projects;
+  List<ProjectItemModel> get data;
   @override
   @JsonKey(ignore: true)
   _$$ProjectModelImplCopyWith<_$ProjectModelImpl> get copyWith =>
