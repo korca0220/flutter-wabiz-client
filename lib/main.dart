@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_wabiz_client/router.dart';
+import 'package:flutter_wabiz_client/shared/shared_pref_provider.dart';
 import 'package:flutter_wabiz_client/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final pref = await SharedPreferences.getInstance();
+
   runApp(
-    const ProviderScope(
-      child: MainApp(),
+    ProviderScope(
+      overrides: [
+        sHaredPreferencesProvider.overrideWithValue(pref),
+      ],
+      child: const MainApp(),
     ),
   );
 }
