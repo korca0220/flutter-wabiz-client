@@ -1,12 +1,27 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_wabiz_client/model/category/category_model.dart';
+import 'package:flutter_wabiz_client/model/project/project_model.dart';
 import 'package:flutter_wabiz_client/theme.dart';
+import 'package:flutter_wabiz_client/view_model/favorite/favorite_view_model.dart';
 import 'package:gap/gap.dart';
 
-class ProjectBottomAppBar extends StatelessWidget {
-  const ProjectBottomAppBar({super.key});
+class ProjectBottomAppBar extends ConsumerWidget {
+  const ProjectBottomAppBar({
+    super.key,
+    required this.project,
+  });
+
+  final ProjectItemModel project;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favorites = ref.watch(favoriteViewModelProvider);
+    final current = favorites.projects.firstWhereOrNull(
+      (element) => element.id == project.id,
+    );
+
     return BottomAppBar(
       height: 84,
       color: Colors.white,
@@ -26,9 +41,48 @@ class ProjectBottomAppBar extends StatelessWidget {
             Column(
               children: [
                 IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_border,
+                  onPressed: () {
+                    if (current != null) {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: const Text('구독을 취소할까요?'),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      ref
+                                          .read(favoriteViewModelProvider
+                                              .notifier)
+                                          .removeItem(CategoryItemModel(
+                                            id: project.id,
+                                          ));
+
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('네'))
+                              ],
+                            );
+                          });
+
+                      return;
+                    }
+
+                    ref
+                        .read(favoriteViewModelProvider.notifier)
+                        .addItem(CategoryItemModel(
+                          id: project.id,
+                          title: project.title,
+                          thumbnail: project.thumbnail,
+                          description: project.description,
+                          owner: project.owner,
+                          totalFunded: project.totalFunded,
+                          totalFundedCount: project.totalFundedCount,
+                        ));
+                  },
+                  icon: Icon(
+                    current == null ? Icons.favorite_border : Icons.favorite,
+                    color: current == null ? Colors.black : Colors.red,
                   ),
                 ),
                 const Text("1만+")

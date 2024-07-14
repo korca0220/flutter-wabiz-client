@@ -2,11 +2,13 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_wabiz_client/theme.dart';
 import 'package:flutter_wabiz_client/view_model/category/category_view_model.dart';
+import 'package:flutter_wabiz_client/view_model/favorite/favorite_view_model.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -330,10 +332,64 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                               Positioned(
                                                 right: 2,
                                                 top: 2,
-                                                child: IconButton(
-                                                  onPressed: () {},
-                                                  icon: const Icon(
-                                                      Icons.favorite_border),
+                                                child: Consumer(
+                                                  builder:
+                                                      (context, ref, child) {
+                                                    final favorites = ref.watch(
+                                                        favoriteViewModelProvider);
+
+                                                    final current = favorites
+                                                        .projects
+                                                        .firstWhereOrNull(
+                                                            (element) =>
+                                                                element.id ==
+                                                                project.id);
+
+                                                    return IconButton(
+                                                      onPressed: () {
+                                                        if (current != null) {
+                                                          showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (context) {
+                                                                return AlertDialog(
+                                                                  content:
+                                                                      const Text(
+                                                                          '구독을 취소할까요?'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          ref.read(favoriteViewModelProvider.notifier).removeItem(
+                                                                              project);
+
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        child: const Text(
+                                                                            '네'))
+                                                                  ],
+                                                                );
+                                                              });
+
+                                                          return;
+                                                        }
+
+                                                        ref
+                                                            .read(
+                                                                favoriteViewModelProvider
+                                                                    .notifier)
+                                                            .addItem(project);
+                                                      },
+                                                      icon: Icon(current == null
+                                                          ? Icons
+                                                              .favorite_border
+                                                          : Icons.favorite),
+                                                      color: current == null
+                                                          ? Colors.white
+                                                          : Colors.red,
+                                                    );
+                                                  },
                                                 ),
                                               )
                                             ],

@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'favorite_repository.dart';
+part of 'favorite_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$favoriteRepositoryHash() =>
-    r'114de9a4af1743be2e47c1bd7e789daac92ff217';
+String _$favoriteViewModelHash() => r'360da57f2919f3b0a27502aee9ee94206d6aff47';
 
-/// See also [favoriteRepository].
-@ProviderFor(favoriteRepository)
-final favoriteRepositoryProvider =
-    AutoDisposeProvider<FavoriteRepository>.internal(
-  favoriteRepository,
-  name: r'favoriteRepositoryProvider',
+/// See also [FavoriteViewModel].
+@ProviderFor(FavoriteViewModel)
+final favoriteViewModelProvider =
+    AutoDisposeNotifierProvider<FavoriteViewModel, CategoryModel>.internal(
+  FavoriteViewModel.new,
+  name: r'favoriteViewModelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$favoriteRepositoryHash,
+      : _$favoriteViewModelHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef FavoriteRepositoryRef = AutoDisposeProviderRef<FavoriteRepository>;
+typedef _$FavoriteViewModel = AutoDisposeNotifier<CategoryModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

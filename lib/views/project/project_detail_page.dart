@@ -187,7 +187,9 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
           );
         },
       ),
-      bottomNavigationBar: const ProjectBottomAppBar(),
+      bottomNavigationBar: ProjectBottomAppBar(
+        project: projectItemModel,
+      ),
     );
   }
 }
