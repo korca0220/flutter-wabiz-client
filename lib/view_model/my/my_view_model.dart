@@ -1,4 +1,5 @@
 import 'package:flutter_wabiz_client/model/login/login_model.dart';
+import 'package:flutter_wabiz_client/model/project/project_model.dart';
 import 'package:flutter_wabiz_client/repository/my/my_repository.dart';
 import 'package:flutter_wabiz_client/view_model/login/login_view_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -34,13 +35,30 @@ class MyPageViewModel extends _$MyPageViewModel {
     );
   }
 
-  fetchUserProjects() async {}
+  Future<List<ProjectItemModel>> fetchUserProjects() async {
+    final userId = state.loginModel?.id;
 
-  updateProject(String id) async {
-    await ref.watch(myRepositoryProvider).updateProjectOpenState(id);
+    final result = await ref
+        .watch(myRepositoryProvider)
+        .getProjectsByUserId(userId.toString());
+
+    return result.data;
   }
 
-  deleteProject(String id) async {
-    await ref.watch(myRepositoryProvider).deleteProject(id);
+  Future<bool> updateProject(String id, ProjectItemModel body) async {
+    final result =
+        await ref.watch(myRepositoryProvider).updateProjectOpenState(id, body);
+
+    if (result.status == "ok") return true;
+
+    return false;
+  }
+
+  Future<bool> deleteProject(String id) async {
+    final result = await ref.watch(myRepositoryProvider).deleteProject(id);
+
+    if (result.status == "ok") return true;
+
+    return false;
   }
 }
