@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_wabiz_client/model/home/home_model.dart';
+import 'package:flutter_wabiz_client/data/model/home/home_model.dart';
 import 'package:flutter_wabiz_client/repository/home/home_repository.dart';
 import 'package:flutter_wabiz_client/shared/model/project_category.dart';
 import 'package:flutter_wabiz_client/views/home/home_page.dart';

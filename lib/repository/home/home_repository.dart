@@ -1,4 +1,4 @@
-import 'package:flutter_wabiz_client/model/home/home_model.dart';
+import 'package:flutter_wabiz_client/data/model/home/home_model.dart';
 import 'package:flutter_wabiz_client/service/home/home_api.dart';
 import 'package:flutter_wabiz_client/service/home/home_api_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

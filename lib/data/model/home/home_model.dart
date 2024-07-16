@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:flutter_wabiz_client/domain/entity/home/home_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_model.freezed.dart';
@@ -42,4 +43,27 @@ class HomeItemModel with _$HomeItemModel {
 
   factory HomeItemModel.fromJson(Map<String, Object?> json) =>
       _$HomeItemModelFromJson(json);
+}
+
+extension HomeToEntity on HomeItemModel {
+  HomeEntity toEntity() {
+    return HomeEntity(
+      id: id,
+      categoryId: categoryId,
+      projectTypeId: projectTypeId,
+      userId: userId,
+      title: title,
+      owner: owner,
+      price: price,
+      thumbnail: thumbnail,
+      deadline: deadline,
+      description: description,
+      waitlistCount: waitlistCount,
+      totalFundedCount: totalFundedCount,
+      totalFunded: totalFunded,
+      isOpen: isOpen,
+      category: category,
+      type: type,
+    );
+  }
 }
