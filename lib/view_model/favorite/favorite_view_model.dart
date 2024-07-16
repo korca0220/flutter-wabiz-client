@@ -37,9 +37,9 @@ class FavoriteViewModel extends _$FavoriteViewModel {
         );
   }
 
-  void removeItem(CategoryItemModel value) {
+  void removeItem(int id) {
     final oldState = [...state.projects];
-    oldState.removeWhere((element) => element.id == value.id);
+    oldState.removeWhere((element) => element.id == id);
 
     state = state.copyWith(
       projects: [...oldState],

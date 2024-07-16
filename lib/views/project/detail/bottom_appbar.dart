@@ -54,9 +54,7 @@ class ProjectBottomAppBar extends ConsumerWidget {
                                       ref
                                           .read(favoriteViewModelProvider
                                               .notifier)
-                                          .removeItem(CategoryItemModel(
-                                            id: project.id,
-                                          ));
+                                          .removeItem(project.id!);
 
                                       Navigator.of(context).pop();
                                     },

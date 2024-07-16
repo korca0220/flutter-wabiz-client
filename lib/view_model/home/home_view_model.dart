@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_wabiz_client/model/home/home_model.dart';
 import 'package:flutter_wabiz_client/repository/home/home_repository.dart';
 import 'package:flutter_wabiz_client/shared/model/project_category.dart';
+import 'package:flutter_wabiz_client/views/home/home_page.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -39,7 +41,15 @@ Future<HomeModel> fetchHomeProject(FetchHomeProjectRef ref) async {
         await ref.watch(homeViewModelProvider.notifier).fetchHomeData();
 
     return result ?? const HomeModel();
-  } catch (e) {
+  } on DioException catch (e) {
+    switch (e.type) {
+      case DioExceptionType.connectionTimeout:
+        throw ConnectionTimeoutError(e);
+      case DioExceptionType.connectionError:
+        throw ConnectionError(e);
+      default:
+    }
+
     return const HomeModel();
   }
 }

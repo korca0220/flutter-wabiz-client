@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_wabiz_client/shared/widgets/project_large_widget.dart';
 import 'package:flutter_wabiz_client/theme.dart';
 import 'package:flutter_wabiz_client/view_model/home/home_view_model.dart';
 import 'package:gap/gap.dart';
@@ -144,9 +146,6 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Consumer(
                 builder: (context, ref, child) {
-                  // final project =
-                  //     ref.watch(homeViewModelProvider.notifier).fetchHomeData();
-
                   final homeData = ref.watch(fetchHomeProjectProvider);
 
                   return homeData.when(
@@ -169,109 +168,44 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (context, index) {
                             final project = data.projects[index];
 
-                            return InkWell(
-                              onTap: () {
-                                context.push(
-                                  '/detail',
-                                  extra: jsonEncode(project.toJson()),
-                                );
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.only(
-                                  bottom: 8,
-                                  left: 16,
-                                  right: 16,
-                                  top: 20,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 30,
-                                      spreadRadius: 4,
-                                      offset: const Offset(0, 8),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Container(
-                                      height: 200,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10),
-                                        ),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: CachedNetworkImageProvider(
-                                            project.thumbnail ?? "",
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            project.isOpen == "close"
-                                                ? "${numberFormatter.format(project.waitlistCount)}명이 기다려요."
-                                                : "${numberFormatter.format(project.totalFundedCount)}명이 인증했어요.",
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 18,
-                                              color: AppColors.primaryColor,
-                                            ),
-                                          ),
-                                          const Gap(8),
-                                          Text(project.title ?? ""),
-                                          const Gap(16),
-                                          Text(
-                                            project.owner ?? " 세상에 없던 브랜드를",
-                                            style: TextStyle(
-                                              color: AppColors.wabizGray[500],
-                                            ),
-                                          ),
-                                          const Gap(16),
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 6,
-                                              vertical: 4,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: AppColors.bg,
-                                              borderRadius:
-                                                  BorderRadius.circular(3),
-                                            ),
-                                            child: Text(
-                                              project.isOpen == "close"
-                                                  ? "오픈예정"
-                                                  : "바로구매",
-                                              style: const TextStyle(
-                                                fontSize: 10,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
+                            return ProjectLargeWidget(
+                              projectDataString: jsonEncode(
+                                project.toJson(),
                               ),
                             );
                           },
                         ),
                       );
                     },
-                    error: (error, trace) => Text(error.toString()),
+                    error: (error, trace) {
+                      switch (error) {
+                        case ConnectionTimeoutError():
+                          return globalErrorHandler(
+                            error as ErrorHandler,
+                            error as DioException,
+                            ref,
+                            fetchHomeProjectProvider,
+                          );
+                        case ConnectionError():
+                          return Center(
+                            child: Text(
+                              error.toString(),
+                            ),
+                          );
+                        case UnsupportedError():
+                          return Center(
+                            child: Text(
+                              error.toString(),
+                            ),
+                          );
+                      }
+                      return globalErrorHandler(
+                        error as ErrorHandler,
+                        error as DioException,
+                        ref,
+                        fetchHomeProjectProvider,
+                      );
+                    },
                     loading: () => const Center(
                       child: CircularProgressIndicator(),
                     ),
@@ -284,4 +218,51 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+sealed class ErrorHandler {}
+
+class ConnectionTimeoutError extends ErrorHandler {
+  DioException exception;
+
+  ConnectionTimeoutError(this.exception);
+}
+
+class ConnectionError extends ErrorHandler {
+  DioException exception;
+
+  ConnectionError(this.exception);
+}
+
+Widget globalErrorHandler(ErrorHandler? errorHandler, DioException? exception,
+    WidgetRef? ref, ProviderOrFamily? provider) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text("${exception?.message}"),
+        if (ref != null)
+          TextButton(
+            onPressed: () {
+              if (provider != null) {
+                ref.invalidate(provider);
+              }
+            },
+            child: const Text("새로고침"),
+          ),
+        TextButton(
+          onPressed: () {
+            Clipboard.setData(
+              ClipboardData(
+                text: exception?.stackTrace.toString() ?? "",
+              ),
+            );
+          },
+          child: const Text("에러보고"),
+        ),
+      ],
+    ),
+  );
 }

@@ -363,7 +363,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                                                         onPressed:
                                                                             () {
                                                                           ref.read(favoriteViewModelProvider.notifier).removeItem(
-                                                                              project);
+                                                                              project.id!);
 
                                                                           Navigator.of(context)
                                                                               .pop();
