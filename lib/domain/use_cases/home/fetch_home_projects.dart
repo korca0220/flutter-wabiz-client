@@ -3,7 +3,7 @@ import 'package:flutter_wabiz_client/data/repository/home/home_repository_impl.d
 import 'package:flutter_wabiz_client/domain/entity/home/home_entity.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../views/home/home_page.dart';
+import '../../../presentation/views/home/home_page.dart';
 
 part 'fetch_home_projects.g.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wabiz_client/views/category/category_page.dart';
 import 'package:flutter_wabiz_client/views/favorite/favorite_page.dart';
-import 'package:flutter_wabiz_client/views/home/home_page.dart';
+import 'package:flutter_wabiz_client/presentation/views/home/home_page.dart';
 import 'package:flutter_wabiz_client/views/login/sign_in_page.dart';
 import 'package:flutter_wabiz_client/views/login/sign_up_page.dart';
 import 'package:flutter_wabiz_client/views/my/my_page.dart';
