@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   List<HomeEntity> get projects => throw _privateConstructorUsedError;
+  List<ProjectCategory> get categories => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({List<HomeEntity> projects});
+  $Res call({List<HomeEntity> projects, List<ProjectCategory> categories});
 }
 
 /// @nodoc
@@ -45,12 +46,17 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? projects = null,
+    Object? categories = null,
   }) {
     return _then(_value.copyWith(
       projects: null == projects
           ? _value.projects
           : projects // ignore: cast_nullable_to_non_nullable
               as List<HomeEntity>,
+      categories: null == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<ProjectCategory>,
     ) as $Val);
   }
 }
@@ -63,7 +69,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<HomeEntity> projects});
+  $Res call({List<HomeEntity> projects, List<ProjectCategory> categories});
 }
 
 /// @nodoc
@@ -78,12 +84,17 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? projects = null,
+    Object? categories = null,
   }) {
     return _then(_$HomeStateImpl(
       projects: null == projects
           ? _value._projects
           : projects // ignore: cast_nullable_to_non_nullable
               as List<HomeEntity>,
+      categories: null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<ProjectCategory>,
     ));
   }
 }
@@ -91,8 +102,11 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  _$HomeStateImpl({final List<HomeEntity> projects = const []})
-      : _projects = projects;
+  _$HomeStateImpl(
+      {final List<HomeEntity> projects = const [],
+      final List<ProjectCategory> categories = const []})
+      : _projects = projects,
+        _categories = categories;
 
   final List<HomeEntity> _projects;
   @override
@@ -103,9 +117,18 @@ class _$HomeStateImpl implements _HomeState {
     return EqualUnmodifiableListView(_projects);
   }
 
+  final List<ProjectCategory> _categories;
+  @override
+  @JsonKey()
+  List<ProjectCategory> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
+
   @override
   String toString() {
-    return 'HomeState(projects: $projects)';
+    return 'HomeState(projects: $projects, categories: $categories)';
   }
 
   @override
@@ -113,12 +136,16 @@ class _$HomeStateImpl implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
-            const DeepCollectionEquality().equals(other._projects, _projects));
+            const DeepCollectionEquality().equals(other._projects, _projects) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_projects));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_projects),
+      const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
@@ -128,10 +155,14 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  factory _HomeState({final List<HomeEntity> projects}) = _$HomeStateImpl;
+  factory _HomeState(
+      {final List<HomeEntity> projects,
+      final List<ProjectCategory> categories}) = _$HomeStateImpl;
 
   @override
   List<HomeEntity> get projects;
+  @override
+  List<ProjectCategory> get categories;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>

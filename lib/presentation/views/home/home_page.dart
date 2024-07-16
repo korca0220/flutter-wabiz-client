@@ -4,8 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_wabiz_client/domain/use_cases/home/fetch_home_categories.dart';
-import 'package:flutter_wabiz_client/domain/use_cases/home/fetch_home_projects.dart';
+import 'package:flutter_wabiz_client/presentation/providers/home/home_provider.dart';
 import 'package:flutter_wabiz_client/shared/widgets/project_large_widget.dart';
 import 'package:flutter_wabiz_client/theme.dart';
 import 'package:gap/gap.dart';
@@ -84,8 +83,7 @@ class _HomePageState extends State<HomePage> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 16, bottom: 16),
                       child: Consumer(builder: (context, ref, child) {
-                        final categories =
-                            ref.watch(fetchHomeCategoriesProvider);
+                        final categories = ref.watch(homeProviderProvider);
 
                         return switch (categories) {
                           AsyncData(:final value) => GridView.builder(
@@ -96,9 +94,9 @@ class _HomePageState extends State<HomePage> {
                                 crossAxisSpacing: 12,
                                 mainAxisSpacing: 0,
                               ),
-                              itemCount: value.length,
+                              itemCount: value.categories.length,
                               itemBuilder: (context, index) {
-                                final category = value[index];
+                                final category = value.categories[index];
 
                                 return InkWell(
                                   onTap: () {
@@ -147,11 +145,11 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Consumer(
                 builder: (context, ref, child) {
-                  final homeData = ref.watch(fetchHomeProjectsProvider);
+                  final homeData = ref.watch(homeProviderProvider);
 
                   return homeData.when(
                     data: (data) {
-                      if (data.isEmpty) {
+                      if (data.projects.isEmpty) {
                         return Column(
                           children: [
                             const Text('정보가 없습니다'),
@@ -167,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListView.builder(
                           itemCount: 10,
                           itemBuilder: (context, index) {
-                            final project = data[index];
+                            final project = data.projects[index];
 
                             return ProjectLargeWidget(
                               projectDataString: jsonEncode(
@@ -185,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                             error as ErrorHandler,
                             error as DioException,
                             ref,
-                            fetchHomeProjectsProvider,
+                            homeProviderProvider,
                           );
                         case ConnectionError():
                           return Center(
@@ -204,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                         error as ErrorHandler,
                         error as DioException,
                         ref,
-                        fetchHomeProjectsProvider,
+                        homeProviderProvider,
                       );
                     },
                     loading: () => const Center(
