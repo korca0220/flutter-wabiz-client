@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_wabiz_client/service/home/home_api.dart';
+import 'package:flutter_wabiz_client/data/data_source/home/home_api.dart';
 import 'package:flutter_wabiz_client/shared/network_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

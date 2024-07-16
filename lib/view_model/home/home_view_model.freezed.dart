@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  List<HomeItemModel> get projects => throw _privateConstructorUsedError;
+  List<HomeEntity> get projects => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -28,7 +28,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({List<HomeItemModel> projects});
+  $Res call({List<HomeEntity> projects});
 }
 
 /// @nodoc
@@ -50,7 +50,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       projects: null == projects
           ? _value.projects
           : projects // ignore: cast_nullable_to_non_nullable
-              as List<HomeItemModel>,
+              as List<HomeEntity>,
     ) as $Val);
   }
 }
@@ -63,7 +63,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<HomeItemModel> projects});
+  $Res call({List<HomeEntity> projects});
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
       projects: null == projects
           ? _value._projects
           : projects // ignore: cast_nullable_to_non_nullable
-              as List<HomeItemModel>,
+              as List<HomeEntity>,
     ));
   }
 }
@@ -91,13 +91,13 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  _$HomeStateImpl({final List<HomeItemModel> projects = const []})
+  _$HomeStateImpl({final List<HomeEntity> projects = const []})
       : _projects = projects;
 
-  final List<HomeItemModel> _projects;
+  final List<HomeEntity> _projects;
   @override
   @JsonKey()
-  List<HomeItemModel> get projects {
+  List<HomeEntity> get projects {
     if (_projects is EqualUnmodifiableListView) return _projects;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_projects);
@@ -128,10 +128,10 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  factory _HomeState({final List<HomeItemModel> projects}) = _$HomeStateImpl;
+  factory _HomeState({final List<HomeEntity> projects}) = _$HomeStateImpl;
 
   @override
-  List<HomeItemModel> get projects;
+  List<HomeEntity> get projects;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>

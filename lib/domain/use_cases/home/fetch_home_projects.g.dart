@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_repository.dart';
+part of 'fetch_home_projects.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeRepositoryHash() => r'07b559d01f181c997d73e0ee845ad1b8436ce8ac';
+String _$fetchHomeProjectsHash() => r'f83cd6518393bd0145824756ccd7b58117cd5eb9';
 
-/// See also [homeRepository].
-@ProviderFor(homeRepository)
-final homeRepositoryProvider = AutoDisposeProvider<HomeRepository>.internal(
-  homeRepository,
-  name: r'homeRepositoryProvider',
+/// See also [fetchHomeProjects].
+@ProviderFor(fetchHomeProjects)
+final fetchHomeProjectsProvider =
+    AutoDisposeFutureProvider<List<HomeEntity>>.internal(
+  fetchHomeProjects,
+  name: r'fetchHomeProjectsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$homeRepositoryHash,
+      : _$fetchHomeProjectsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef HomeRepositoryRef = AutoDisposeProviderRef<HomeRepository>;
+typedef FetchHomeProjectsRef = AutoDisposeFutureProviderRef<List<HomeEntity>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

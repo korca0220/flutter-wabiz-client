@@ -4,9 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_wabiz_client/domain/use_cases/home/fetch_home_categories.dart';
+import 'package:flutter_wabiz_client/domain/use_cases/home/fetch_home_projects.dart';
 import 'package:flutter_wabiz_client/shared/widgets/project_large_widget.dart';
 import 'package:flutter_wabiz_client/theme.dart';
-import 'package:flutter_wabiz_client/view_model/home/home_view_model.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -146,11 +147,11 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Consumer(
                 builder: (context, ref, child) {
-                  final homeData = ref.watch(fetchHomeProjectProvider);
+                  final homeData = ref.watch(fetchHomeProjectsProvider);
 
                   return homeData.when(
                     data: (data) {
-                      if (data.projects.isEmpty) {
+                      if (data.isEmpty) {
                         return Column(
                           children: [
                             const Text('정보가 없습니다'),
@@ -166,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListView.builder(
                           itemCount: 10,
                           itemBuilder: (context, index) {
-                            final project = data.projects[index];
+                            final project = data[index];
 
                             return ProjectLargeWidget(
                               projectDataString: jsonEncode(
@@ -184,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                             error as ErrorHandler,
                             error as DioException,
                             ref,
-                            fetchHomeProjectProvider,
+                            fetchHomeProjectsProvider,
                           );
                         case ConnectionError():
                           return Center(
@@ -203,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                         error as ErrorHandler,
                         error as DioException,
                         ref,
-                        fetchHomeProjectProvider,
+                        fetchHomeProjectsProvider,
                       );
                     },
                     loading: () => const Center(
