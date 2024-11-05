@@ -1,0 +1,19 @@
+name: Notify on New Tag
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  notify:
+    runs-on : ubuntu-latest
+    steps:
+      - name : Send Notification to Another Repository
+        env: 
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X POST -H "Authorization: token $GH_TOKEN" \
+          -H "Accept: application/vnd.github.everest-preview+json" \
+          -d '{"event_type": "api-server-tagged", "client_payload": {"tag": "${GITHUB_REF##*/}"}}' \
+          https://api.github.com/repos/korca0220/craftify/dispatches
