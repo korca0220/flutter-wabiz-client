@@ -11,7 +11,7 @@ jobs:
     steps:
       - name : Send Notification to Another Repository
         env: 
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.API_KEY }}
         run: |
           curl -X POST -H "Authorization: token $GH_TOKEN" \
           -H "Accept: application/vnd.github.everest-preview+json" \
