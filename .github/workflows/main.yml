@@ -15,8 +15,9 @@ jobs:
       - name : Send Notification to Another Repository
         env:         
           TAG_NAME: ${{ env.TAG_NAME }}
+          API_KEY: ${{ secrets.API_KEY }}
         run: |
-          curl -X POST -H "Authorization: token $${{ secrets.GITHUB_TOKEN }}" \
+          curl -X POST -H "Authorization: token $API_KEY" \
           -H "Accept: application/vnd.github.everest-preview+json" \
           -d '{"event_type": "api-server-tagged", "client_payload": {"tag": "'"$TAG_NAME"'"}}' \
           https://api.github.com/repos/korca0220/craftify/dispatches
